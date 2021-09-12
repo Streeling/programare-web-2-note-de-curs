@@ -1083,339 +1083,36 @@ Nu vom prezenta exemple cu session scope deaorece ne trebuie utilizator să se p
 </li>
 </ol>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="truecurs-3-spring-mvc"><a class="anchor" href="#truecurs-3-spring-mvc"></a>Curs 3: Spring MVC</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Injectarea valorilor definite în fișiere properties:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Configuration
-@PropertySource("classpath:foo.properties")
-public class AppConfig {
-  //...
-}</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Value( "${foo.bar}" )
-private String fooBar;</code></pre>
-</div>
+<p>O aplicație web operează cu conținuturi statice și dinamice. Vom începe cu conținuturile statice.</p>
 </div>
 <div class="paragraph">
-<p>Injectarea listelor:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Component
-public class SomeBean {
-  private List&lt;String&gt; aList;
-
-  public SomeBean(List&lt;String&gt; aList) {
-    this.aList = aList;
-  }
-}</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Configuration
-public class AppConfig {
-  @Bean
-  public List&lt;String&gt; aList() {
-    List&lt;String&gt; list = new ArrayList();
-	list.add("One");
-	list.add("Tow");
-	return list;
-  }
-}</code></pre>
-</div>
+<p>Ce se întâmplă când pornim o aplicațiie web Spring Boot? Sa analizăm jurnalul:</p>
 </div>
 <div class="paragraph">
-<p>Sau Spring ar putea să ne strângă singur o lista:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">public class A {
-  private String name;
-
-  public A(String name) {
-    this.name = name;
-  }
-
-  //...
-}</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Configuration
-public class AppConfig() {
-
-  @Bean
-  //@Order(3)
-  public A first() {
-    return new A("fist");
-  }
-
-  @Bean
-  //@Order(2)
-  @Qualifier("list2")
-  public A second() {
-    return new A("second");
-  }
-
-  @Bean
-  //@Order(1)
-  @Qualifier("list2")
-  public A third() {
-    return new A("third");
-  }
-}</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Component
-public class B {
-  private List&lt;A&gt; as;
-  private List&lt;A&gt; list2;
-
-  public B(List&lt;A&gt; as, @Qualifier("list2") List&lt;A&gt; list2) {
-    this.as = as;
-	this.list2 = list2;
-  }
-}</code></pre>
-</div>
+<p>Tomcat e un webserve in primul rând</p>
 </div>
 <div class="paragraph">
-<p>Injectarea listelor din fișiere properties:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="properties" class="language-properties hljs">list={'1','2','3'}</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">public class A {
-  private List&lt;String&gt; list;
-
-  public A(@Value("#{${list}}") List&lt;String&gt; list) {
-    this.list = list;
-  }
-}</code></pre>
-</div>
+<p><a href="https://spring.io/blog/2013/12/19/serving-static-web-content-with-spring-boot" class="bare">https://spring.io/blog/2013/12/19/serving-static-web-content-with-spring-boot</a></p>
 </div>
 <div class="paragraph">
-<p>Injectarea dicționarelor (en. <em>map</em>), comasare dicționarelor.</p>
+<p>cummunity
+<a href="https://github.com/spring-petclinic" class="bare">https://github.com/spring-petclinic</a>
+<a href="https://spring-petclinic.github.io/" class="bare">https://spring-petclinic.github.io/</a>
+<a href="https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc-config-static-resources" class="bare">https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc-config-static-resources</a></p>
 </div>
-<div class="quoteblock">
-<blockquote>
+</div>
+</div>
+<div class="sect1">
+<h2 id="truecurs-3-spring-mvc-2"><a class="anchor" href="#truecurs-3-spring-mvc-2"></a>Curs 3: Spring MVC</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>The <code>org.springframework.context.ApplicationContext</code> interface represents the Spring IoC container and is responsible for instantiating, configuring, and assembling the beans.
-The container gets its instructions on what objects to instantiate, configure, and assemble by reading configuration metadata. The configuration metadata is represented in XML, Java annotations, or Java code.</p>
-</div>
-</blockquote>
-<div class="attribution">
-&#8212; https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-basics
-</div>
-</div>
-<div class="paragraph">
-<p>Respectiv noi putem explicit crea IoC container, de exemplu:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs"> ApplicationContext context = new ClassPathXmlApplicationContext("services.xml", "daos.xml");</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>sau</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">public static void main(String[] args) {
-    ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
-    MyService myService = ctx.getBean(MyService.class);
-    myService.doStuff();
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>care e o implemntare a interfeței <code>ApplicationContext</code>.
-Însă în majoritatea aplicațiilor nu e nevoie de a crea explicit IoC containerul.
-E nevoie doar sa furnizăm definițiile bean-urilor (en. <em>configuration metadata</em>).
-Inițial definițiile bean-uri puteau fi furnizate doar in XML (en. <em>XML-based [Spring] configuration</em>, sau simplu en. <em>XML configration</em>).</p>
-</div>
-<div class="paragraph">
-<p>Drept exercițiu am putea transforma proiectul GreetingController într-un proiect care să citească definițiile bean-urile din XML.</p>
-</div>
-<div class="paragraph">
-<p>Începând cu Spring 2.5 se introduce posibilitatea de a defini bean-urile prin adnotări (en. <em>annotation-based configuration</em>) ca o alternativă la formatul XML.
-Această opțiune presupune că definiția bean-urilor e scosă din XML și transferă în codul sursă folosind adnotări.
-Avantajele XML-urilor este externalizarea definițiilor. Daca folosim XML atunci trebuie să indicam numele fișierelor XML.
-În cazul configurării prin adnotări trebuie să indicăm pachetele care trebuie scanate. Implicit Spring Boot scanează toate subpachetele din radăcină.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Configuration
-@ComponentScan(basePackages = "org.example")
-public class AppConfig  {
-    // ...
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Orice bean are un identificator (nume). Dacă avem nevoie de mai multe identificatoare acest lucru se poate obține prin aliasuri.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Service("myBeanName")
-public class GreetingService {</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>dacă nu specificăm numele, atunci containerul îi generează un nume unic în baza numelui clasei. Folosind <em>camel case</em>.
-Cu o excepție dacă numele începe cu cel puțin două majuscule atunci registrul nu este schimbat în denumirea bean-ului.
-Acest lucru poate fi verificat deoarece se folsoesțe metoda <code>decapitalize()</code> a clasei <code>java.beans.Introspector</code>.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">System.out.println(Introspector.decapitalize("MyBeanClassName"));
-System.out.println(Introspector.decapitalize("MYBeanClassName"));</code></pre>
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>myBeanName - camel case</p>
-</div>
-<div class="paragraph">
-<p>MyBeanName - pascal case</p>
-</div>
-<div class="paragraph">
-<p>my_bean_name - snake case</p>
-</div>
-<div class="paragraph">
-<p>my-bean-name - kebab case</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Pentru alias-uri</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Service("myBeanName, myBeanName2")
-public class GreetingService {</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>În cazul când bean-uri sunt construite prin <code>@Bean</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Bean(name = "name")
-
-@Bean({"name1", "name2"})</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>iar dacă nu e specificat se ia din denumirea metodei.</p>
-</div>
-<div class="paragraph">
-<p>Un exemplu pentru <code>depends-on</code>.</p>
-</div>
-<div class="paragraph">
-<p>În mod implicit containerul creeaza și configurează toate bean-urile singleton.
-În așa fel dacă sunt eori vom ști de ele la intializare. Îm unele cazuri însă această abordare nu este recomandată.
-În așa caz am putea să ne folosim de <code>lazy-init</code>.</p>
-</div>
-<div class="paragraph">
-<p>Un exemplu cu Lazy-initialized.</p>
-</div>
-<div class="paragraph">
-<p>În situații când un singleton are dependințe prototype modalitatea obișnuită de definiție nu e potrivită.
-Deorece beanu-rile ptototype vor fi create și injectate în singleton la initializarea singleton-unul, noi însă am dori să fie create la fiecare accesare.
-Solutția naivă ar fi să injectăm contextul aplicației în singleton și să apelăm <code>getBean</code> de fiecare data (<a href="https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-factory-method-injection" class="bare">https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-factory-method-injection</a>).
-Nu e recomandat. Avem cuplare strânsă în așa caz (un adaos la responsbilități).
-În așa caz ne vine în ajutor injecția de metodă (en. <em>method injection</em>). Injecția de metodă indică Spring-ului că o anumită metodă din singleton care citește prototype este legată de bean-ul prototype.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Component
-@Scope("prototype")
-public class PrototypeBean {
-  // ...
-}</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Service
-public class SomeServices {
-
-    @Lookup
-    public PrototypeBean getPrototypeBean() {
-        return null;
-    }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Exemplul de mai sus arată că putem modifica corpul unei metode. Așa e, Spring poate să injecteze nu doar dependințele, dar și metodele.</p>
-</div>
-<div class="paragraph">
-<p>Care cilcul de viață a unui bean? Putem accesa unele evenimente din ciculul e viață a unui bean:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>@PostConstruct, @PreDestroy.</p>
-</li>
-<li>
-<p><code>InitializingBean</code> și <code>void afterPropertiesSet() throws Exception;</code></p>
-</li>
-<li>
-<p><code>DisposableBean</code> și <code>void destroy() throws Exception;</code></p>
-</li>
-<li>
-<p>sau simplu prin utilizarea unor metode cu anumite nume, fără a inmplementa interfețe speciale: <code>init()</code>, <code>initialize()</code>, <code>dispose()</code></p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>În plus avem posibilitatea să detectăm când se pornește și respectiv se oprește containerul: <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-factory-lifecycle-processor" class="bare">https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-factory-lifecycle-processor</a>.</p>
-</div>
-<div class="paragraph">
-<p>Alte interfețe de tip <code>Aware</code>: <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#aware-list" class="bare">https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#aware-list</a>.</p>
-</div>
-<div class="paragraph">
-<p>Implementare de factory bean: <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-factory-extension-factorybean" class="bare">https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-factory-extension-factorybean</a>.</p>
-</div>
-<div class="paragraph">
-<p><code>@Primary</code>: <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-autowired-annotation-primary" class="bare">https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-autowired-annotation-primary</a>.</p>
-</div>
-<div class="paragraph">
-<p>Anumite lmitari ale standardului: <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-standard-annotations-limitations" class="bare">https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-standard-annotations-limitations</a>.</p>
-</div>
-<div class="paragraph">
-<p>Profile ale bean-urilor: <code>@Profile</code>, <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-definition-profiles" class="bare">https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-definition-profiles</a>.</p>
-</div>
-<div class="paragraph">
-<p><code>@PropertySource</code>: <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-using-propertysource" class="bare">https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-using-propertysource</a></p>
-</div>
-<div class="paragraph">
-<p>i18n: <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#context-functionality-messagesource" class="bare">https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#context-functionality-messagesource</a>.</p>
-</div>
-<div class="paragraph">
-<p>Evenimente standard: <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#context-functionality-events" class="bare">https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#context-functionality-events</a>.</p>
+<p>Toate exemplele cercetate la această lecție vor fi luate din <a href="https://github.com/spring-projects/spring-mvc-showcase" class="bare">https://github.com/spring-projects/spring-mvc-showcase</a>.</p>
 </div>
 </div>
 </div>
@@ -1441,7 +1138,7 @@ public class SomeServices {
 <div id="footer">
 <div id="footer-text">
 Version 1.0<br>
-Last updated 2021-09-09 20:43:04 +0300
+Last updated 2021-09-12 13:43:39 +0300
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
