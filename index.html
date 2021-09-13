@@ -1089,30 +1089,51 @@ Nu vom prezenta exemple cu session scope deaorece ne trebuie utilizator să se p
 <h2 id="truecurs-3-spring-mvc"><a class="anchor" href="#truecurs-3-spring-mvc"></a>Curs 3: Spring MVC</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>O aplicație web operează cu conținuturi statice și dinamice. Vom începe cu conținuturile statice.</p>
+<p>Vom considera proiectul <a href="https://github.com/spring-projects/spring-mvc-showcase">Spring MVC Showcase</a>
+în care sunt exemplificate majoritatea capabilităților Spring utilizate în elaborarea aplicațiilor web.
+După cum e precizat în <a href="https://github.com/spring-projects/spring-mvc-showcase#to-run-the-application">documentație</a>, pentru a rula proiectului va nevoie de executat comanda</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="shell" class="language-shell hljs">mvn jetty:run</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>Ce se întâmplă când pornim o aplicațiie web Spring Boot? Sa analizăm jurnalul:</p>
+<p>Dacă Maven nu este instalat, ne putem folosi de cel integrat în IntelliJ IDEA.
+Pentru aceasta:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Accesează <span class="menuseq"><b class="menu">View</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">Tool Windows</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Maven</b></span></p>
+</li>
+<li>
+<p>În panoul nou apărut expandează nodul rădăcină <strong>spring-mvc-showcase</strong></p>
+</li>
+<li>
+<p>Expandează nodul <strong>plugins</strong>, apoi nodul <strong>jetty</strong></p>
+</li>
+<li>
+<p>Dublu clic pe nodul <strong>jetty:run</strong>.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
-<p>Tomcat e un webserve in primul rând</p>
+<p>La final, accesează în navigatorul web <a href="http://localhost:8080/spring-mvc-showcase/" class="bare">http://localhost:8080/spring-mvc-showcase/</a>.
+Spring MVC Showcase conține foarte multe exemple, vom considera doar cele din pachetele:</p>
 </div>
-<div class="paragraph">
-<p><a href="https://spring.io/blog/2013/12/19/serving-static-web-content-with-spring-boot" class="bare">https://spring.io/blog/2013/12/19/serving-static-web-content-with-spring-boot</a></p>
-</div>
-<div class="paragraph">
-<p>cummunity
-<a href="https://github.com/spring-petclinic" class="bare">https://github.com/spring-petclinic</a>
-<a href="https://spring-petclinic.github.io/" class="bare">https://spring-petclinic.github.io/</a>
-<a href="https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc-config-static-resources" class="bare">https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc-config-static-resources</a></p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="truecurs-3-spring-mvc-2"><a class="anchor" href="#truecurs-3-spring-mvc-2"></a>Curs 3: Spring MVC</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Toate exemplele cercetate la această lecție vor fi luate din <a href="https://github.com/spring-projects/spring-mvc-showcase" class="bare">https://github.com/spring-projects/spring-mvc-showcase</a>.</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>org.springframework.samples.mvc.simple</code></p>
+</li>
+<li>
+<p><code>org.springframework.samples.mvc.mapping</code></p>
+</li>
+<li>
+<p><code>org.springframework.samples.mvc.views</code>.</p>
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -1138,7 +1159,7 @@ Nu vom prezenta exemple cu session scope deaorece ne trebuie utilizator să se p
 <div id="footer">
 <div id="footer-text">
 Version 1.0<br>
-Last updated 2021-09-12 13:43:39 +0300
+Last updated 2021-09-13 20:09:40 +0300
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
