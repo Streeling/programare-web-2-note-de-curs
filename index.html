@@ -1091,7 +1091,7 @@ Nu vom prezenta exemple cu session scope deaorece ne trebuie utilizator să se p
 <div class="paragraph">
 <p>Vom considera proiectul <a href="https://github.com/spring-projects/spring-mvc-showcase">Spring MVC Showcase</a>
 în care sunt exemplificate majoritatea capabilităților Spring utilizate în elaborarea aplicațiilor web.
-După cum e precizat în <a href="https://github.com/spring-projects/spring-mvc-showcase#to-run-the-application">documentație</a>, pentru a rula proiectului va nevoie de executat comanda</p>
+După cum e precizat în <a href="https://github.com/spring-projects/spring-mvc-showcase#to-run-the-application">documentație</a>, pentru a rula proiectului va fi nevoie de executat comanda:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1131,9 +1131,426 @@ Spring MVC Showcase conține foarte multe exemple, vom considera doar cele din p
 <p><code>org.springframework.samples.mvc.mapping</code></p>
 </li>
 <li>
+<p><code>org.springframework.samples.mvc.data</code></p>
+</li>
+<li>
 <p><code>org.springframework.samples.mvc.views</code>.</p>
 </li>
+<li>
+<p><code>org.springframework.samples.mvc.redirect</code></p>
+</li>
 </ol>
+</div>
+<div class="paragraph">
+<p>Pentru clasele din <code>org.springframework.samples.mvc.simple</code> sunt remarcabile următoarele fragmente de cod:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Fragment de cod</th>
+<th class="tableblock halign-left valign-top">Descriere</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@RestController</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Marchează clasa ca fiind un rest controler.
+Aceasta presupune că rezultatul întors de fiecare metodă a controlerului este scris direct în răspunsul la cererea HTTP.
+De fapt <code>@RestController</code> e o presurtare de la <code>@Controller</code> + <code>@ResponseBody</code>, în particular <code>@ResponseBody</code> este adnotarea care are
+drept efect scrierea direct în răspunsul HTTP a rezultatului întors de metodă.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@GetMapping("/simple")</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Realizează maparea între metoda controlerului și cererea HTTP-GET către adresa <em>/simple</em>. În particular,
+<code>@GetMapping("/simple")</code> e o prescurtare de la <code>@RequestMapping(path = "/simple", method = RequestMethod.GET)</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@GetMapping(path="/simple/revisited", headers="Accept=text/plain")</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Realizează maparea între metoda controlerului și cererea HTTP-GET către adresa <em>/simple/revisited</em>.
+În plus specifică antetul de cerere <em>Accept</em>.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Pentru clasele din <code>org.springframework.samples.mvc.mapping</code> sunt remarcabile următoarele fragmente de cod:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Fragment de cod</th>
+<th class="tableblock halign-left valign-top">Descriere</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@GetMapping("/mapping/path/*")</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mapează controlerul sau metoda la o cerere HTTP-GET care începe cu <em>/mapping/path</em> și are cel mult trei nivele.
+De exemplu, <em>/mapping/path/anysubpath</em> va apela metoda, iar /mapping/path/anysubpath/anysubsubpath - nu (deoarece are patru nivele).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;metodaControler&gt;(HttpServletRequest request)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Spring va injecta obiectul de tip <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletRequest.html">HttpServletRequest</a>.
+Acest obiect conține detalii specifice cerererii HTTP care a declanșat apelul metodei <code>&lt;metodaControler&gt;</code>.
+În plus Spring poate sa ne injecteze și obiectul-pereche, de tip
+<a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletResponse.html">HttpServletResponse</a>, prin intermediul căruia putem
+scrie în răspunsul HTTP. Pentru mai multe amănunte privind tipurile de parametri care pot fi injectate de Spring în metoda
+unui controler, vezi <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc-ann-arguments">Method Arguments</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@GetMapping(path="/mapping/parameter", params="foo")</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mapează metoda la o cerere HTTP-GET către adresa <em>/mapping/parameter</em> care în mod obligatoriu conține parametrul <code>foo</code>.
+De exemplu, <em>/mapping/parameter?foo=123&amp;bar=qwerty</em>. În particular, am putea specifică si valoarea obligatorie pentru parametru,
+de exemplu <code>params="foo=123"</code>, în acest caz <em>/mapping/parameter?foo=123</em> se va potrivi definiției mapării, iar
+<em>/mapping/parameter?foo=456</em> - nu.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@GetMapping(path="/mapping/parameter", params="!foo")</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mapează metoda la o cerere HTTP-GET către adresa <em>/mapping/parameter</em> care în mod obligatoriu nu conține parametrul <code>foo</code>.
+De exemplu, <em>/mapping/parameter?bar=qwerty</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@GetMapping(path="/mapping/header", headers="FooHeader=foo")</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mapează metoda la o cerere HTTP-GET către adresa <em>/mapping/parameter</em> care în mod obligatoriu conține antetul de cerere <code>FooHeader</code>
+cu valoarea <code>foo</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@GetMapping(path="/mapping/header", headers="!FooHeader")</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mapează metoda la o cerere HTTP-GET către adresa <em>/mapping/parameter</em> care în mod obligatoriu nu conține antetul de cerere <code>FooHeader</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@PostMapping(path="/mapping/consumes", consumes=MediaType.APPLICATION_JSON_VALUE)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifică că corpul cererii HTTP trebuie să fie în format JSON.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@GetMapping(path="/mapping/produces", produces=MediaType.APPLICATION_JSON_VALUE)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifică tipul MIME al răspunsului să fie JSON.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@GetMapping(path="/mapping/produces", produces=MediaType.APPLICATION_XML_VALUE)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifică tipul MIME al răspunsului să fie XML.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>public String byConsumes(@RequestBody JavaBean javaBean)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Corpul cererii HTTP este agregat într-un obiect de tip <code>JavaBean</code>.
+Pentru mai multe amănunte privind tipurile de parametri care pot fi injectați de Spring în metoda
+unui controler, vezi <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc-ann-arguments">Method Arguments</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@RequestMapping("/class-mapping/*")</code> pe clasă</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mapare controler la cereri HTTP care încep cu <em>/class-mapping</em> și au cel mult o componentă pe nivelul următor.
+În rezultat <em>/class-mapping</em> devine prefix pentru toate metodele din controler mapate la cereri HTTP.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Pentru clasele din <code>org.springframework.samples.mvc.data</code> sunt remarcabile următoarele fragmente de cod:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Fragment de cod</th>
+<th class="tableblock halign-left valign-top">Descriere</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;metodaControler&gt;(@RequestParam String foo)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mapează parametrul <code>foo</code> la parametrul cu același nume din <em>query string</em>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;metodaControler&gt;(@MatrixVariable String foo)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mapează parametrul <code>foo</code> la un parametru cu același nume dintr-un nivel al URL-ului cererii cu condiția ca parametri sunt separați prin cracaterul <em>;</em>.
+De exemplu, în <em>/path/foo=123;bar=qwerty</em>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;metodaControler&gt;(@MatrixVariable(name="foo", pathVar="path1") String foo1)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mapează parametrul <code>foo</code> la un parametru cu același nume din nivel <code>path1</code> al URL-ului cererii.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;metodaControler&gt;(@RequestHeader String Accept)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mapează parametrul <code>Accept</code> la antetul de cerere <em>Accept</em>. De ce nu în <em>camel case</em>?</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;metodaControler&gt;(@CookieValue String openid_provider)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mapează parametrul <code>openid_provider</code> la <em>cookie-ul</em> <em>openid_provider</em>. De ce nu în <em>camel case</em>?</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;metodaControler&gt;(@RequestBody String body)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mapează parametrul <code>body</code> la corpul cererii HTTP.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;metodaControler&gt;(HttpEntity&lt;String&gt; entity)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Spring va injecta obiectul de tip <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/http/HttpEntity.html">HttpEntity</a>.
+Acest obiect conține detalii specifice cerererii HTTP (cu corpul de tip <code>String</code>) care a declanșat apelul metodei &lt;metodaControler&gt;.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;metodaControler&gt;(Principal user)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mapează parametrul <code>user</code> la utilizatorul curent. În particular, dacă nu este organizat mecanizmul de autentificare,
+utilizatorul curent va fi utilizatorul anonim.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;metodaControler&gt;(Locale locale)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mapează parametrul <code>locale</code> la localizarea curentă.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;metodaControler&gt;(HttpSession session)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mapează parametrul <code>session</code> la sesiunea curentă.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Pentru clasele din <code>org.springframework.samples.mvc.views</code> sunt remarcabile următoarele fragmente de cod:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Fragment de cod</th>
+<th class="tableblock halign-left valign-top">Descriere</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@Controller</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Marchează clasa ca fiind controler.
+Aceasta înseamnă că metodele din acestă clasă care sunt mapate la cereri HTTP nu vor scrie direct în răspunsul HTTP
+ci vor participa în procesul de rezoluție a șabloanelor HTML (en. <em>views</em>) care la rândul lor vor fi folosite pentru construirea răspunsului HTTP.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@RequestMapping("/views/*")</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mapează controlerul sau metoda la o cerere HTTP-GET care începe cu <em>/views</em> și are cel mult două nivele.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;metodaControler&gt;(Model model)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Obiectul de tip <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/ui/Model.html">Model</a>
+care va fi disponibil atât în controler cât și în șabloanele HTML. Acest obiect conține colecția de câmpuri setate în controler și
+disponibile în <em>view</em> în procesul de generare a HTML-ului.
+Pentru mai multe amănunte privint tipurile de parametri care pot fi injectate de Spring în metoda
+unui controler, vezi <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc-ann-arguments">Method Arguments</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String &lt;metodaControler&gt;()</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">De regulă metodă unui controler întoarce o valoare de tip <code>String</code>: numele fișierului (fără extensie) ce coține șablonul HTML.
+Aceste fișiere sunt localizate în <strong>src/webapp/WEB-INF/views</strong>. In general, dosarul unde sunt localizate sabloanele HTML
+poate fi modificat folosind <a href="https://spring.io/blog/2011/01/04/green-beans-getting-started-with-spring-mvc/">InternalResourceViewResolver</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>void &lt;metodaControler&gt;()</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">O metodă poate să întoarcă <code>void</code> în acest caz numele metodei este utilizat pentru rezoluția fișierului <em>view</em>.
+De exemplue dac metoda se numește <code>usingRequestToViewNameTranslator</code>, atunci va fi căutat fișierul <code>src/webapp/WEB-INF/view/usingRequestToViewNameTranslator</code>.
+În general, tipul de intoarcere a metodelor
+din controler nu este limitat la <code>String</code> și <code>void</code>.
+De exemplu, am putea obține același efect întorcând un
+obiect de tipul <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/servlet/ModelAndView.html">ModelAndView</a>.
+Pentru mai multe amănunte privitor la tipruile care pot fi întoarse de metodele din controler, vezi
+<a href="https://docs.spring.io/spring-framework/docs/current/reference/html/web.html#mvc-ann-return-types">Return Values</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@GetMapping("pathVariables/{foo}/{fruit}")</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mapare metodă controler la o cerere HTTP către adresă cu două componente dinamice.
+Aceste componente vor fi accesibile prin variabilele de cale (en. <em>path varaibles</em>) <code>foo</code> și <code>fruit</code>.
+Mai mult aceste componenete vor fi automat înregistrate pe model.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;metodaControler&gt;(@Valid JavaBean javaBean)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Parametrii de pe cerere sunt agregați în obiectului de tip <code>JavaBean</code> (en. <em>binding</em>). Mai mult, acesta va fi validat.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Pe langa dosarele unde sunt localizate sabloanele HTML, exista un set predefinit de dosare, de unde serverul poate
+lua continut static, vezi <a href="https://spring.io/blog/2013/12/19/serving-static-web-content-with-spring-boot">Serving Static Web Content with Spring Boot</a></p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Pentru clasele din <code>org.springframework.samples.mvc.redirect</code> sunt remarcabile următoarele fragmente de cod:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Fragment de cod</th>
+<th class="tableblock halign-left valign-top">Descriere</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>return "redirect:&lt;url&gt;"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifică &lt;url&gt; pentru redirecționare.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Exerciții:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Scrie un REST controler, iar în el câte o metodă mapată la o cerere HTTP astfel încât:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>metoda să afișeze URL-ul aplicației relativ la adresa serverului</p>
+</li>
+<li>
+<p>metoda să afișeze URL-ul metodei mapate relativ la adresa aplicației</p>
+</li>
+<li>
+<p>metoda să afișeze URL-ul absolut al cererii HTTP</p>
+</li>
+<li>
+<p>metoda să afișeze partea adresei din cerere fără protocol și șirul de perechi nume=valoare (en. <em>query string</em>)</p>
+</li>
+<li>
+<p>metoda să afișeze șirul de perechi nume=valoare (en. <em>query string</em>) a cererii HTTP.</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">HINT</dt>
+<dd>
+<p>vezi metodele <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletRequest.html#getContextPath--">HttpServletRequest.getContextPath()</a>,
+<a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletRequest.html#getQueryString--">HttpServletRequest.getQueryString()</a>,
+<a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletRequest.html#getRequestURI--">HttpServletRequest.getRequestURI()</a>,
+<a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletRequest.html#getRequestURL--">HttpServletRequest.getRequestURL()</a>,
+<a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletRequest.html#getServletPath--">HttpServletRequest.getServletPath()</a></p>
+</dd>
+</dl>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Scrie un REST controler, iar în el câte o metodă mapată la o cerere HTTP astfel încât:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>metoda să afișeze lista de <a href="https://www.byte.ro/byte98-02/wm.html"><em>cookie</em>-uri</a></p>
+</li>
+<li>
+<p>metoda să afișeze lista de antete cerere</p>
+</li>
+<li>
+<p>metoda să afișeze lista de parametri din <em>query string</em>.</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">HINT</dt>
+<dd>
+<p>vezi metodele <a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletRequest.html#getCookies--">HttpServletRequest.getCookies()</a>,
+<a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletRequest.html#getHeaderNames--">HttpServletRequest.getHeaderNames()</a>,
+<a href="https://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpServletRequest.html#getHeader-java.lang.String-">HttpServletRequest.getHeader()</a></p>
+</dd>
+</dl>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Scrie un rest controler, iar in acest controler:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>o metoda <code>add()</code> care primește doi parametri de tip întreg si intoarce suma acestora</p>
+</li>
+<li>
+<p>o metoda <code>concat()</code> care primește doi parametri de tip <code>String</code> și întoarce valoarea concatenată</p>
+</li>
+<li>
+<p>daca ai folosit adnotarea <code>@GetMapping</code> rescrie controlerul să foloseasca doar <code>@RequestMapping</code> și invers</p>
+</li>
+<li>
+<p>rescrie metoda <code>add()</code> astfel incat sș primeasca un al iii-lea parametru care va specifica tipul operației:
+adunare sau înmulțire, respectiv metoda va fi redenumita în <code>op()</code></p>
+</li>
+<li>
+<p>sparge metoda <code>op()</code> în două metode specialziate: <code>add()</code> și <code>mul()</code> folosind opțiunea <code>parameters</code> din
+adnotările <code>@GetMapping</code>/<code>@RequestMapping</code>.</p>
+</li>
+<li>
+<p>declară o clasa <code>Operation</code> cu doua câmpuri întregi și rescrie metodele <code>add()</code> și <code>mul()</code> astfel incât
+parametrii sa fie agregați într-un obiect de tip <code>Operation</code> (<code>@RequestBody</code>)</p>
+</li>
+<li>
+<p>rescrie metoda <code>concat()</code> astfel incât să accepte cereri către adrese de orice nivel și metoda să concateneze
+toate nivelele (<code>HttpServletRequest.html#getRequestURI()</code> și <em>split</em> după <code>/</code>).</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Scrie un controler care va simula un navigator de fișiere. Acest controler trebuie să întoarcă <code>true</code> pentru
+dosarele existente. Nivele adresei le vom privi drept dosare. Dosarul de la un nivel este subdosar pentru
+nivelul precedent și este parinte pentru nivelul următor. De exemplu, in <em>/a/b/c</em>, <em>b</em> este subdosar pentru
+<em>a</em> și în același timp este părinte pentru <em>c</em>. Scrie câte o metodă care să confirm€ existența dosarului care
+respecta condițiile:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><em>c</em> și <em>d</em> sunt dosare radăcină</p>
+</li>
+<li>
+<p><em>x</em> este subdosarul lui <em>c</em></p>
+</li>
+<li>
+<p><em>y</em> este subdosarul oricarui dosar care se conține în <em>d</em></p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Creeaza un controler adnotat cu <code>@Controller</code> care să conțină două metode, o metoda întoarce o lista de string-uri care
+sunt folosite pentru a umple un șablon HTML, iar altă metodă întoarce aceeași listă însă în format JSON.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="truecurs-4-spring-mvc"><a class="anchor" href="#truecurs-4-spring-mvc"></a>Curs 4: Spring MVC</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Vom considera urmatoarele pachete din <a href="https://github.com/spring-projects/spring-mvc-showcase">Spring MVC Showcase</a>:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>org.springframework.samples.mvc.validation</code></p>
+</li>
+<li>
+<p><code>org.springframework.samples.mvc.form</code></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>JSP, Thymeleaf, Mustache</p>
 </div>
 </div>
 </div>
@@ -1159,7 +1576,7 @@ Spring MVC Showcase conține foarte multe exemple, vom considera doar cele din p
 <div id="footer">
 <div id="footer-text">
 Version 1.0<br>
-Last updated 2021-09-13 20:09:40 +0300
+Last updated 2021-09-16 20:18:46 +0300
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
