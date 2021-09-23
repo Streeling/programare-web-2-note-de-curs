@@ -446,6 +446,26 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <span id="revnumber">version 1.0,</span>
 <span id="revdate">2021-09-03</span>
 </div>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#truecurs-1-introducere">Curs 1: Introducere</a></li>
+<li><a href="#truecurs-2-bean-uri">Curs 2: Bean-uri</a></li>
+<li><a href="#truecurs-3-spring-mvc">Curs 3: Spring MVC</a></li>
+<li><a href="#truecurs-4-spring-mvc">Curs 4: Spring MVC</a></li>
+<li><a href="#truecurs-5-spring-data">Curs 5: Spring Data</a></li>
+<li><a href="#truecurs-6-spring-data">Curs 6: Spring Data</a></li>
+<li><a href="#truecurs-7-teste">Curs 7: Teste</a></li>
+<li><a href="#truecurs-8-bean-uri">Curs 8: Bean-uri</a></li>
+<li><a href="#truecurs-9-spring-mvc">Curs 9: Spring MVC</a></li>
+<li><a href="#truecurs-10-spring-mvc">Curs 10: Spring MVC</a></li>
+<li><a href="#truecurs-11-spring-mvc">Curs 11: Spring MVC</a></li>
+<li><a href="#truecurs-12-spring-data">Curs 12: Spring Data</a></li>
+<li><a href="#truecurs-13-spring-security">Curs 13: Spring Security</a></li>
+<li><a href="#truecurs-14-rest">Curs 14: REST</a></li>
+<li><a href="#truecurs-15-scheduling-caching">Curs 15: Scheduling, Caching</a></li>
+</ul>
+</div>
 </div>
 <div id="content">
 <div class="sect1">
@@ -496,7 +516,7 @@ Iar în Java calculatorul gândește în termeni de obiecte.</p>
 Termenul de „orientat pe obiect” a fost prima data introdus de Alan Kay (
 <sup class="footnote">[<a id="_footnoteref_4" class="footnote" href="#_footnotedef_4" title="View footnote.">4</a>]</sup>,
 <sup class="footnote">[<a id="_footnoteref_5" class="footnote" href="#_footnotedef_5" title="View footnote.">5</a>]</sup>
-). Și înțelegerea lui privind obiectele ar fi urmatoarea:</p>
+). Și înțelegerea lui privind obiectele este urmatoarea:</p>
 </div>
 <div class="quoteblock">
 <blockquote>
@@ -577,12 +597,24 @@ Pentru orice eventualitate există și definiția modernă, standardizată:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Pentru terecerea în revistă conceptelor de bază a limbajelor orientate pe obiect recomand:
-. proiectul Stack Overflow Documentation, care e defunct dar poate fi accesat pe
-<a href="http://web.archive.org/web/20161207222656/http://stackoverflow.com/documentation/java/topics">Wayback Machine</a> sau
-. <a href="https://docs.oracle.com/javase/tutorial/java/index.html">Oracle The Java™ Tutorials</a>
-. <a href="http://elf.cs.pub.ro/poo/laboratoare/java-basics">Java Basics</a>
-. <a href="http://discipline.elcom.pub.ro/isw/poo/2006_Laborator/Index%20of%20Laborator%20POO.htm">POO</a>.</p>
+<p>Pentru terecerea în revistă conceptelor de bază a limbajelor orientate pe obiect recomand:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>proiectul Stack Overflow Documentation, care e defunct dar poate fi accesat pe
+<a href="http://web.archive.org/web/20161207222656/http://stackoverflow.com/documentation/java/topics">Wayback Machine</a> sau</p>
+</li>
+<li>
+<p><a href="https://docs.oracle.com/javase/tutorial/java/index.html">Oracle The Java™ Tutorials</a></p>
+</li>
+<li>
+<p><a href="http://elf.cs.pub.ro/poo/laboratoare/java-basics">Java Basics</a></p>
+</li>
+<li>
+<p><a href="http://discipline.elcom.pub.ro/isw/poo/2006_Laborator/Index%20of%20Laborator%20POO.htm">POO</a>.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
 <p>Iar însăsi conceptele ar fi:</p>
@@ -644,9 +676,10 @@ Framework-ul e o experiență verificată.</p>
 <p>Putem genera o simplă aplicație web utilizând Spring prin intermediul instrumentului: <a href="https://start.spring.io/">Spring Initializr</a>.
 În cadrul acestui proiect vom crea un controller cu o metodă, analog acestui exemplu <a href="https://spring.io/guides/gs/serving-web-content/" class="bare">https://spring.io/guides/gs/serving-web-content/</a> urmând pașii din acest exemplu
 <a href="https://github.com/Streeling/sample-web-application" class="bare">https://github.com/Streeling/sample-web-application</a>.
-Vom folosi mediul integrat IntelliJ IDEA Community (sunt și altele: Eclipse, NetBeans, Atom &#8230;&#8203;).
+Vom folosi mediul integrat IntelliJ IDEA Community (sunt și altele: Eclipse, NetBeans, Atom, VS Code &#8230;&#8203;).
+Pe situl <a href="https://spring.io/guides/">Spring Guides</a> sunt două ghiduri pentru <a href="https://spring.io/guides/gs/intellij-idea/">utilizarea IntelliJ IDEA</a> și <a href="https://spring.io/guides/gs/guides-with-vscode/">VS Code</a>.
 Conceptele aferent sunt: adnotări (en. <em>annotations</em>, <a href="https://github.com/Streeling/sample-web-application/blob/main/Annotations.adoc" class="bare">https://github.com/Streeling/sample-web-application/blob/main/Annotations.adoc</a>),
-punct de intrare pentru o cerere client (en. <em>endpoint</em>), URL, query string.</p>
+punct de intrare pentru o cerere client (en. <em>endpoint</em>), URL, query string. În aplicația generată vom un REST controler:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -659,6 +692,9 @@ public class GreetingController {
   }
 }</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Modificăm <code>GreetingController</code> într-o versiune mai generală:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -706,25 +742,10 @@ builder.append("!");
 return builder.toString();</pre>
 </div>
 </div>
-</li>
-</ol>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
 <div class="paragraph">
-<p>În particular dacă se urmărește concatenarea șirurilor separate de printr-un delimitator anume putem considera:</p>
+<p>În particular dacă se urmărește concatenarea șirurilor separate printr-un delimitator anume putem considera:</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
 <p><code>StringJoiner</code> (Java 8+):</p>
 <div class="listingblock">
@@ -746,6 +767,9 @@ return joiner.toString();</code></pre>
 <div class="paragraph">
 <p>Vom finaliza lecția cu noțiunea de server de aplicații.</p>
 </div>
+<div class="paragraph">
+<p>Activarea erorilor <a href="https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html#application-properties.server.server.error.whitelabel.enabled" class="bare">https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html#application-properties.server.server.error.whitelabel.enabled</a>.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -754,16 +778,14 @@ return joiner.toString();</code></pre>
 <div class="paragraph">
 <p>În exemplul de la cursul precedent am creat un controller șî în el un punct de intrare pentru o cerere de la client.
 Am pornit aplicația și am văzut că a funcționat exact cum am vrut.
-Întrebare: cine a creat obiectul de tip controller?
+Întrebare: cine a creat obiectul de tip <code>GreetingController</code>?
 Cunoaștem că Java operează cu obiecte, iar noi am definit doar clasa pentru controller fără a crea explicit un obiect de tipul acelui controller.
 Întrucât aplicația a lucrat așa cum am vrut, reise că cineva totuși a creat acel obiect. Cumva în spate, după cortină ușurându-ne lucrul.</p>
 </div>
 <div class="paragraph">
-<p>Spring l-a creat, mai exact Spring IoC container (en. <em>Inversion of Control</em>). Dar acesta este un exemplu particular.
-Din care nu e clar cu ce scop l-a creat, doar ca să ne scuteasca de câteva linii de cod?</p>
-</div>
-<div class="paragraph">
-<p>Este important aici să începem cu noțiunea de dependință (pentru mai multe exemple, vezi <a href="http://web.archive.org/web/20170816205456/https://stackoverflow.com/documentation/spring/7067/spring-core">StackOverflow Documentation|Spring Core</a>).
+<p>Raspuns: Obiectul a fost creat de Spring, mai exact de către Spring IoC container (en. <em>Inversion of Control</em>). Dar acesta este un exemplu particular.
+Din care nu e clar cu ce scop l-a creat, doar ca să ne scuteasca de câteva linii de cod?
+Este important aici să începem cu noțiunea de dependință (pentru mai multe exemple, vezi <a href="http://web.archive.org/web/20170816205456/https://stackoverflow.com/documentation/spring/7067/spring-core">StackOverflow Documentation|Spring Core</a>).
 Dependința e un termen general. O bibliotecă (cu o sumedenie de clase) la fel e o dependință.
 Dare e important să înțelegem că putem folosi dependință și atunci când vorbim de obiecte. Obiecte care au funcțional de care au nevoie alte obiecte.
 În cazul bibliotecilor, de acestea se ocupă Maven. Iar în cazul obiectelor Java, se ocupa Spring IoC container.
@@ -784,6 +806,54 @@ Beans, and the dependencies among them, are reflected in the configuration metad
 </div>
 <div class="paragraph">
 <p>Deci din definiție reise că noi decidem care obiecte vor fi bean-uri. Vom vedea mai departe că aceste obiecte trebuie să verifice și careva proprietăți.
+În Spring avem trei modalități de a defini (configura) bean-urile:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Prin XML (en. <em>XML configuration</em>), de exemplu:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;bean id="myBean" class="com.demo.MyBean"/&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Prin adnotări (en. <em>annotation-based configuration</em>, vezi <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-factory-metadata">Configuration Metadata</a>), de exemplu:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@RestController
+public class GreetingController {
+  // ...
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Lista tuturor adnotărilor de bază le putem găsi în <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-stereotype-annotations" class="bare">https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-stereotype-annotations</a> sau în pachetul <code>org.springframework.stereotype</code>.</p>
+</div>
+</li>
+<li>
+<p>Prin Java (en. <em>Java-based configuration</em>, vezi vezi <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-factory-metadata">Configuration Metadata</a>), de exemplu:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Configuration
+publi class AppConfig {
+
+  @Bean
+  public MyBean myBean() {
+    return new MyBean();
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Lista tuturor adnotărilor este: <code>@Configuration</code>, <code>@Bean</code>, <code>@Import</code> și <code>@DependsOn</code>.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Pe lângă faptul că Spring IoC container creează bean-urile acesta mai îndeplinește încă o funcție, și anume rezolvarea/injectarea dependințelor.
 Să consideram următorul exemplu:</p>
 </div>
 <div class="listingblock">
@@ -804,6 +874,7 @@ public class GreetingController {
 
   private final GreetingService greetingService;
 
+  @Autowired
   public GreetingController(GreetingService greetingService) {
     this.greetingService = greetingService;
   }
@@ -816,11 +887,8 @@ public class GreetingController {
 </div>
 <div class="paragraph">
 <p>Din exemplu se observă că am marcat prima clasa cu <code>@Service</code>, iar a doua cu <code>@RestController</code> ambele sunt adnotări pentru a specifica bean-uri.
-Lista tuturor le putem găsi în <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-stereotype-annotations" class="bare">https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-stereotype-annotations</a>
-sau în pachetul <code>org.springframework.stereotype</code>.</p>
-</div>
-<div class="paragraph">
-<p>De observat că dependința <code>GreetingService</code> a fost injectată prin constructorul controller-ului, această abordare se numește injectarea prin constructorul clasei (en. <em>Constructor Injection</em>).
+Grație adnotării <code>@Autowired</code> de pe constructorul clasei <code>GreetingController</code>, Spring a rezolvat dependița de tip <code>GreetingService</code> și a injectat-o prin parametrul <code>greetingService</code>.
+Această abordare se numește injectarea prin constructorul clasei (en. <em>Constructor Injection</em>).
 În general injectarea unei dependințe se poate face în trei moduri:</p>
 </div>
 <div class="olist arabic">
@@ -853,6 +921,7 @@ public class GreetingController {
     return greetingService.createMsg(name);
   }
 
+  @Autowired
   public void setGreetingService(GreetingService greetingService) {
     this.greetingService = greetingService;
   }
@@ -890,13 +959,14 @@ public class GreetingController {
 </div>
 </div>
 <div class="paragraph">
-<p>Adnotarea <code>@Autowired</code> este specifică pentru Spring. Ca alternativă există două adnotări din Java EE care sunt implementate în Spring: <code>@Inject</code> (JSR-330) și <code>@Resource</code> (JSR-250).
-Să vedem diferențele, cum lucrează fiecare dintre ele:</p>
+<p>Adnotarea <code>@Autowired</code> este specifică doar pentru Spring. Ca alternativă există două adnotări din Java EE care sunt implementate în Spring: <code>@Inject</code> (JSR-330) și <code>@Resource</code> (JSR-250).
+Să vedem Anumite lmitari ale standardului: <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-standard-annotations-limitations">diferențele</a>,
+cum lucrează fiecare dintre ele:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>@Autowired</code>, selectează bean-ul în funcție de tip (en. <em>by-type</em>), dacă există mai multe bean-uri de acelasi tip,
+<p><code>@Autowired</code>, selectează bean-ul în funcție de tip (en. <em>by-type</em>), dacă există mai multe bean-uri de același tip,
 atunci putem utiliza adnotarea în pereche cu <code>@Qualifier</code> pentru a specifica numele bean-ului care trebuie selectat.</p>
 </li>
 <li>
@@ -911,55 +981,11 @@ La fel dacă sunt mai multe bean-uri de același tip putem utiliza în pereche c
 </div>
 <div class="paragraph">
 <p>Reieșind din cele de mai sus Spring recomandă (<a href="https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-autowired-annotation-qualifiers" class="bare">https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-autowired-annotation-qualifiers</a>),
-atunci când se dorește injectarea unui bean dupa nume, să se folosească <code>@Resource</code>. Să considerăm câte un exemplu pentru <code>@Autowired</code>, <code>@Inject</code> și <code>@Resource</code>.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Exerciții:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Construiți două clase (bean-uri) astfel înât unul din bean-uri să folosească un al iii-lea bean care nu exista și aplicație să nu pice la pornire.</p>
-</li>
-<li>
-<p>Construiți două clase (bean-uri) astfel înât unul din bean-uri să folosească un al iii-lea bean care nu exista și aplicație să pice la pornire.</p>
-</li>
-</ol>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Pe lângă mecanismul de marcare a claselor care vor fi tratate drept bean-uri, Spring-ul ne oferă posibilitatea de a crea bean-urile în mod explicit, folosind adnotarea <code>@Bean</code>.
-De regulă clasa care conține metode adnotate cu <code>@Bean</code> trebuie să fie adnotată cu <code>@Configuration</code>.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Configuration
-public class ServiceConfig {
-
-  @Bean
-  public GreetingService greetingService() {
-    return new GreetingService();
-  }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>În general sunt două modalități de a defini bean-urile: prin XML și prin adnotări. După cum ați observat până acum am facut prin adnotări.
-Vom face astfel și în continuare.</p>
+atunci când se dorește injectarea unui bean dupa nume, să se folosească <code>@Resource</code>.</p>
 </div>
 <div class="paragraph">
 <p>Dar acum să ne oprim la Spring IoC container. Ce este IoC? Inversion of Control. Inversarea Controlului.
-Fluxul controlului nu e în mâinile programatorului/aplicației (adică nu aplicația construiește obictele) ci invers, în mânile framework-ului/containerului.
+Fluxul controlului nu e în „mâinile” programatorului/aplicației (adică nu aplicația construiește obiectele) ci invers, în „mânile” framework-ului/containerului.
 Injectarea dependenințelor se numește DI = Dependecy Injection. Analogii:
 <a href="https://stackoverflow.com/questions/424457/does-anyone-have-a-good-analogy-for-dependency-injection" class="bare">https://stackoverflow.com/questions/424457/does-anyone-have-a-good-analogy-for-dependency-injection</a>,
 <a href="http://goodheads.io/2016/03/16/dependency-injection-explained-plain-english/" class="bare">http://goodheads.io/2016/03/16/dependency-injection-explained-plain-english/</a></p>
@@ -986,6 +1012,198 @@ public class GreetingController {
 <a href="https://web.archive.org/web/20110715101402/http://www.pocomatic.com/docs/whitepapers/ioc-vs-di/" class="bare">https://web.archive.org/web/20110715101402/http://www.pocomatic.com/docs/whitepapers/ioc-vs-di/</a></p>
 </div>
 <div class="paragraph">
+<p>Orice bean are un identificator (nume). Dacă avem nevoie de mai multe identificatoare acest lucru se poate obține prin aliasuri.
+Exemplu de specificare a numelui:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Service("myBeanName")
+public class GreetingService {</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>dacă nu specificăm numele, atunci containerul îi generează un nume unic în baza numelui clasei. Folosind <em>camel case</em>.
+Cu o excepție dacă numele începe cu cel puțin două majuscule atunci registrul nu este schimbat în denumirea bean-ului.
+Acest lucru poate fi verificat deoarece se folsoesțe metoda <code>decapitalize()</code> a clasei <code>java.beans.Introspector</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">System.out.println(Introspector.decapitalize("MyBeanClassName"));
+System.out.println(Introspector.decapitalize("MYBeanClassName"));</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>myBeanName - camel case</p>
+</div>
+<div class="paragraph">
+<p>MyBeanName - pascal case</p>
+</div>
+<div class="paragraph">
+<p>my_bean_name - snake case</p>
+</div>
+<div class="paragraph">
+<p>my-bean-name - kebab case</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Pentru alias-uri</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Service("myBeanName, myBeanName2")
+public class GreetingService {</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>În cazul când bean-urile sunt construite prin <code>@Bean</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Bean(name = "name")
+
+@Bean({"name1", "name2"})</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>iar dacă nu e specificat se ia din denumirea metodei.</p>
+</div>
+<div class="paragraph">
+<p>Injectarea listelor:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Component
+public class SomeBean {
+  private List&lt;String&gt; aList;
+
+  public SomeBean(List&lt;String&gt; aList) {
+    this.aList = aList;
+  }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Configuration
+public class AppConfig {
+  @Bean
+  public List&lt;String&gt; aList() {
+    List&lt;String&gt; list = new ArrayList();
+	list.add("One");
+	list.add("Tow");
+	return list;
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Sau Spring ar putea să ne strângă singur o listă:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">public class A {
+  private String name;
+
+  public A(String name) {
+    this.name = name;
+  }
+
+  //...
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Configuration
+public class AppConfig() {
+
+  @Bean
+  //@Order(3)
+  public A first() {
+    return new A("fist");
+  }
+
+  @Bean
+  //@Order(2)
+  @Qualifier("list2")
+  public A second() {
+    return new A("second");
+  }
+
+  @Bean
+  //@Order(1)
+  @Qualifier("list2")
+  public A third() {
+    return new A("third");
+  }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Component
+public class B {
+  private List&lt;A&gt; as;
+  private List&lt;A&gt; list2;
+
+  public B(List&lt;A&gt; as, @Qualifier("list2") List&lt;A&gt; list2) {
+    this.as = as;
+	this.list2 = list2;
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Injectarea valorilor definite în fișiere properties:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Configuration
+@PropertySource("classpath:foo.properties")
+public class AppConfig {
+  //...
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Value( "${foo.bar}" )
+private String fooBar;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Injectarea listelor din fișiere properties:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="properties" class="language-properties hljs">list={'1','2','3'}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">public class A {
+  private List&lt;String&gt; list;
+
+  public A(@Value("#{${list}}") List&lt;String&gt; list) {
+    this.list = list;
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Injectarea dicționarelor (en. <em>map</em>), comasare dicționarelor.</p>
+</div>
+<div class="paragraph">
 <p>Întrebare: câte obiecte a creat IoC container în baza clasei controller? Eu presupun că doar unul. În caz că am dreptate - de ce doar unul?
 Ați auzit de Singletone? Putem controla acest proces?</p>
 </div>
@@ -999,7 +1217,7 @@ Ați auzit de Singletone? Putem controla acest proces?</p>
 <p>singleton, (implicit) doar un bean pentru fiecare definiție de bean pentru fiecare IoC container</p>
 </li>
 <li>
-<p>prototype, un bean nou la fiecare necsitate pentru fiecare definiție de bean</p>
+<p>prototype, un bean nou la fiecare necesitate pentru fiecare definiție de bean</p>
 </li>
 <li>
 <p>request, un bean nou la fiecare cerere client pentru fiecare definiție de bean (un fel de singleton în raport cu o cerere client)</p>
@@ -1067,8 +1285,7 @@ public class CounterService {
 </div>
 </div>
 <div class="paragraph">
-<p>Utilizăm ptototype pentru bean-urile care trebuie să aibă stare.
-Nu vom prezenta exemple cu session scope deaorece ne trebuie utilizator să se poată loga.</p>
+<p>Utilizăm ptototype pentru bean-urile care trebuie să aibă stare.</p>
 </div>
 <div class="paragraph">
 <p>Sinonime:</p>
@@ -1080,6 +1297,63 @@ Nu vom prezenta exemple cu session scope deaorece ne trebuie utilizator să se p
 </li>
 <li>
 <p><code>@Scope("request")</code> = <code>@RequestScope</code></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Exerciții:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Fie următoarele bean-uri:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Configuration
+public class SomeBeans {
+
+  @Bean
+  @Order(1)
+  public Integer one() {
+    return new Integer(1);
+  }
+
+  @Bean
+  @Order(2)
+  public Integer two() {
+    return new Integer(2);
+  }
+
+  @Bean
+  @Order(3)
+  public Integer three() {
+    return new Integer(3);
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>scrieți un REST controler astfel încât:</p>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>să fie injectate bean-urile <code>one</code> și <code>two</code>, iar controlerul să afișeze suma acestora</p>
+</li>
+<li>
+<p>să fie injectate bean-urile <code>one</code>, <code>two</code> și <code>three</code> într-o listă, iar controlerul să afișeze suma elementelor listei</p>
+</li>
+<li>
+<p>pentru exercițiul precedent mai adugați un bean <code>four</code>, controlerul nu trebuie să fie modificat, iar rezultatul să fie fie tot suma elementelor listei</p>
+</li>
+<li>
+<p>să fie injectate bean-urile „pare” într-o cheie ale unui dicționar (en, <em>map</em>), iar cele impare în altă cheie</p>
+</li>
+<li>
+<p>să fie injectate bean-urile într-o listă în ordine descrescătoare</p>
+</li>
+</ol>
+</div>
 </li>
 </ol>
 </div>
@@ -1119,8 +1393,10 @@ Pentru aceasta:</p>
 </ol>
 </div>
 <div class="paragraph">
-<p>La final, accesează în navigatorul web <a href="http://localhost:8080/spring-mvc-showcase/" class="bare">http://localhost:8080/spring-mvc-showcase/</a>.
-Spring MVC Showcase conține foarte multe exemple, vom considera doar cele din pachetele:</p>
+<p>La final, accesează în navigatorul web <a href="http://localhost:8080/spring-mvc-showcase/" class="bare">http://localhost:8080/spring-mvc-showcase/</a>.</p>
+</div>
+<div class="paragraph">
+<p>Spring MVC Showcase conține foarte multe exemple, vom considera doar cele din pachetele:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -1550,7 +1826,752 @@ sunt folosite pentru a umple un șablon HTML, iar altă metodă întoarce aceea�
 </ol>
 </div>
 <div class="paragraph">
-<p>JSP, Thymeleaf, Mustache</p>
+<p>Pentru clasele din <code>org.springframework.samples.mvc.validation</code> sunt remarcabile următoarele fragmente de cod:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Fragment de cod</th>
+<th class="tableblock halign-left valign-top">Descriere</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@NotNull</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifică că câmpul trebuie să nu fie <code>null</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@Max(5)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifică că câmpul trebuie să aibă cel mult lunigimea 5.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@Future</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifică că câmpul trebuie să fie o dată din viitor.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@DateTimeFormat(iso=ISO.DATE)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifică că câmpul trebuie să fie dată formatată corepsunzător.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;metodaControler(BindingResult result)&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Spring va injecta obiectul <code>BindingResult</code> care reprezintă rezultatul validării.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Pentru clasele din <code>org.springframework.samples.mvc.form</code> sunt remarcabile următoarele fragmente de cod:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Fragment de cod</th>
+<th class="tableblock halign-left valign-top">Descriere</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@Past</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifică că câmpul trebuie să fie dată din trecut.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@MaskFormat("(<mark><mark>) </mark></mark>-<mark>#</mark>#")</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifică că câmpul trebuie să fie un șir de carcatere de forma corespunzătoare.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@NumberFormat(pattern="$<mark><mark>,</mark></mark>.00")</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifică că câmpul este un număr de formatul corespunzător.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@NumberFormat(style=Style.PERCENT)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifică că câmpul este o vloare procentuală.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@SessionAttributes("formBean")</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mapează un câmp la un atribut de pe sesiune.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@ModelAttribute</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mapează un parametru sau câmp la un câmp din model.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>&lt;metodaController&gt;(RedirectAttributes redirectAttrs</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Spring va injevta acest obiect care e folosit atunci când dorim control mai minuțios pentru redirectare.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Într-o forma mai simplă puteți găsi două proiecte similare pe <a href="https://spring.io/guides">Spring Guides</a>:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://spring.io/guides/gs/handling-form-submission/">Handling Form Submission</a></p>
+</li>
+<li>
+<p><a href="https://spring.io/guides/gs/validating-form-input/">Validating Form Input</a></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Vom considera un exemplu simplu de controler utilizând Spring Boot:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Controller
+public class GreetingController {
+
+  @GetMapping("/greeting")
+  public String greeting(Model model) {
+    model.addAttribute("name", "World");
+	return "greeting";
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Vom crea fișierul <strong>greeting.mustache</strong> în <strong>resources/templates</strong> cu următorul conținut:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="html" class="language-html hljs">Hello, {{name}}!</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>În caz că nu se dorește utilizarea extensiei .mustcahe ci .html, se poate de adăugat următoarea proprietate în <strong>application.properies</strong>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="properties" class="language-properties hljs">spring.mustache.suffix=.html</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Iar în final vom adăuga dependința pentru procesorul de șabloane <a href="https://mustache.github.io/">Mustache</a> în <strong>pom.xml</strong> (în secțiunea dependencies):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-mustache&lt;/artifactId&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Dacă vom face <em>build</em> și vom lansa aplicația vom observa rezultatul scontat.</p>
+</div>
+<div class="paragraph">
+<p>Modificăm exemplul pentru a arăta cum pot fi afișate tablourile:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Controller
+public class GreetingController {
+
+  @GetMapping("/greeting")
+  public String greeting(Model model) {
+    List&lt;String&gt; names = new ArrayList&lt;&gt;();
+    names.add("World!");
+	names.add("Universe!");
+    model.addAttribute("names", names);
+	return "greeting";
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>și șablonul:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="html" class="language-html hljs">Hello:
+&lt;ul&gt;
+{{#names}}
+  &lt;li&gt;{{.}}&lt;/li&gt;
+{{/names}}
+&lt;/ul&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Pentru mai multe amănunte privind sintaxa limbajului Mustache, vezi <a href="https://mustache.github.io/mustache.5.html">Mustache Manual (5)</a> și <a href="https://mustache.github.io/mustache.1.html">Mustache Manual (1)</a>.
+Mai mult, pe <a href="https://mustache.github.io/#demo" class="bare">https://mustache.github.io/#demo</a> poți chair experimenta.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="truecurs-5-spring-data"><a class="anchor" href="#truecurs-5-spring-data"></a>Curs 5: Spring Data</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Vom considera proiectul <a href="https://github.com/spring-projects/spring-petclinic">Spring PetClinic Sample Application</a> - o aplicație pentru clinica veterinară.
+Este un proiect Spring Boot respectiv pentru a-l rula, în IntelliJ IDEA Community, e nevoie de trei pași: <strong>(i) <em>build</em>, (ii) creare configurare de rulare și (iii) pornirea prorpiu-zisă</strong>.
+Aplicația va fi disponibilă la adresa <a href="http://localhost:8080" class="bare">http://localhost:8080</a> și va afișa câteva legături.
+Pentru a afișa proprietarii animalelor (en. <em>owner</em>) clic pe legătura <strong>Find owners</strong> din stânga-sus și apoi clic pe legătur <strong>Add Owner</strong> amplasată puțin mai jos.
+Completează formularul și clic pe butonul <strong>Add Owner</strong>.
+Înregistrarea a fost stocată în baza de date.
+Pentru a vizualiza înregistrarea introdusă, clic pe <strong>Find owners</strong>, lasă câmpul <strong>Last name</strong> gol și clic pe butonul <strong>Find Owner</strong>.
+Vor fi afișați toți proprietarii de animale care și-au tratat vreodată animalele de companie la clinică, ultimul în listă va fi proprietarul nou introdus.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Înregistrarea nouă va fi ștersă la repornirea aplicației.
+Aceasta se datorează comenzilor <code>DROP TABLE</code> din fișierului <code>db/h2/schema.sql</code>.
+Grație fișierul <code>db/h2/schema.sql</code> la pornirea aplicației baza de date se goloște și se umple cu un set predefinit de tabele.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Pentru comportamentul ce ține de pregătirera bazei de date la fiecare rulare a aplicației sunt responsabile următoarele proprietăți din <code>resources/application.properties</code>:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Fragment de cod</th>
+<th class="tableblock halign-left valign-top">Descriere</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spring.datasource.schema=&lt;cale fisier sql&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifică calea spre fișierul cu comezi DDL utilizat pentru crearea structurii bazei de date la momentul pornirii aplicației.
+Pentru mai multe amănunte, vezi <a href="https://docs.spring.io/spring-boot/docs/2.4.x/reference/html/appendix-application-properties.html#spring.datasource.schema">spring.datasource.schema</a>.
+Este o proprietate învechită, se recomandă înlocuirea cu
+<a href="https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html#application-properties.data-migration.spring.sql.init.schema-locations">spring.sql.init.schema-locations</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spring.datasource.data</code>=&lt;cale fisier sql&gt;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifică calea spre fișierul cu comezi DML utilizat pentru crearea conținutului tabelelor la momentul pornirii aplicației.
+Pentru mai multe amănunte, vezi <a href="https://docs.spring.io/spring-boot/docs/2.4.x/reference/html/appendix-application-properties.html#spring.datasource.data#spring.datasource.schema">spring.datasource.schema</a>.
+Este o proprietate învechită, se recomandă înlocuirea cu
+<a href="https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html#application-properties.data-migration.spring.sql.init.data-locations">spring.sql.init.data-locations</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;proprietate2&gt;=<code>${&lt;proprietate1&gt;}</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Referirea valorii unei proprietăți în cadrul valorii altei proprietăți.
+Utilizând <code>${&lt;nume proprietate&gt;}</code> în valoarea unei propeietăți, Spring va înlocui <code>${&lt;nume proprietate&gt;}</code> ca valoarea acelei proprietăți.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>classpath*:&lt;cale fisier&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Localizează toate fișierele care corespund la &lt;calea fisier&gt;. În particular, <code>classpath:&lt;cale fisier&gt;</code> localizează primul fișier găsit.
+Pentru a înțelege mai bine sistemul de fișiere accesibil prin <code>classpath</code> putem face analogie cu variabila de system <code>PATH</code>.
+Aceasta variabilă conține o listă de dosare și în diferite dosare poate exista același fișier. Cu alte cuvinte în Java sub noțiunea <code>classpath</code>
+sunt montate mai multe, un set de dosare.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spring.jpa.hibernate.ddl-auto</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifică modul în care schema bazei de date va fi generată pe baza JPA și Hibernate.
+Pentru mai multe amănunte, vezi <a href="https://vladmihalcea.com/hibernate-hbm2ddl-auto-schema/">Hibernate hbm2ddl.auto schema generation</a>.
+În particular, în <strong>spring-petclinic</strong> această proprietate are valaorea <code>none</code>, ceea ce înseamnă că nu este activă.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Sumarizând cele de mai sus, pentru a nu pierde înregistrările noi introduse o dată cu repornirea aplicației recomand comentarea celor două proprietăți din <code>application.properties</code>,
+responsabile de fișierele cu comenzile DLL și DML, după prima rulare a aplicației.</p>
+</div>
+<div class="paragraph">
+<p>Alte fragmente remarcabile din fișierul <code>application.properties</code>:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Fragment de cod</th>
+<th class="tableblock halign-left valign-top">Descriere</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spring.thymeleaf.mode</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifică modul de procesare a șabloanelor de către Thymeleaf. Valorile posibile sunt: HTML, XML, TEXT, JAVASCRIPT, CSS și RAW.
+Cu alte cuvinte, Thymeleaf nu doar înlocuiește variabilele într-un șablon. El mai poate verifica validitatea acestuia după înlocuiere, per ansamblu.
+De exemplu, dacă folosim valoarea XML, atunci putem genera fișiere XML pe baza unor șabloane și în plus aceste XML-uri vor fi valide.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spring.jpa.open-in-view</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Activează sau nu pattern-ul OSIV (Open Session In View). Dacă îl punem pe <code>true</code>, atunci pentru orice cerere HTTP, Spring va deschide
+o sesiune Hibernate și o va ține deschisă pe tot parcusul cererii, respectiv dacă citim o entitate care e legată de alte entități și
+încercăm să citim acele entități în afara unei tranzacții nu vom avea LazyInitializationException.
+Pentru mai multe amănunte, vezi <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/orm/hibernate5/support/OpenSessionInViewInterceptor.html">OpenSessionInViewInterceptor</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spring.messages.basename</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lista de dosare (despărțite prin virgulă) unde sunt stocate așa numitele <em>resource boundles</em> (seturi de resurse, de exemplu fișiere de mesaje pentru diferite limbi).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>management.endpoints.web.exposure.include</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Proprietate de la actuator despre care vom vorbi în viitor.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>logging.level.org.springframework</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nivelul pentru jurnal.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>spring.resources.cache.cachecontrol.max-age</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifică valoarea pentru antetul de răspuns <strong>Cache-Control</strong>.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Următoarele fragmente de cod ce țin de maparea claselor și tabelelor sunt remarcabile:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Fragment de cod</th>
+<th class="tableblock halign-left valign-top">Descriere</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@Entity</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Marchează clasa ca fiind o entiate, cu alte cuvinte mapează clasa cu o tabelă din baza de date.
+Dacaă lipsește adnotarea <code>@Table</code>, atunci clasa este mapată cu o tabelă a cărei nume coincide cu numele clasei.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@Table(name = "&lt;nume tabela&gt;")</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mapează clasa cu o tabela &lt;nume tabela&gt; din baza de date.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@Column(name = "address")</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mapează câmpul clasei cu coloana &lt;nume coloana&gt;.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Marchează câmpul ca fiind parte a unei relații de tipul unu la mai mulți.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@ManyToOne</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Marchează câmpul ca fiind parte a unei relații de tipul mai mulți la unu.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@JoinColumn(name = "&lt;nume coloana&gt;")</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indică numele coloanei care este cheie străină pentru o relație de tip <code>@ManyToOne</code> sau <code>@ManyToMany</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@Transient</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indică ca câmpul să nu fie stocat/citit în/din baza de date.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Repository&lt;Owner, Integer&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Repository</em> (ro. <em>depozit</em>) este o interfață care trebuie extinsă/implementată de interfețele/clasele care vor oferi acces de stocare/citire pentru entități din/în baza de date.
+Depozitele sunt obiectele prin care sotcam/citim entitățile din baza de date.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@Query("SELECT DISTINCT owner FROM Owner owner left join fetch owner.pets WHERE owner.lastName LIKE :lastName%")</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indică interogarea JPQL folosită pentru a scoate entități când este apelată o metodă din depozit.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>findByLastName(@Param("lastName") String lastName)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Prin <code>@Param</code> se mapează parametrii metodei din depozit la parametrii din interogare.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@Transactional(readOnly = true)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Marchează că metoda se executa în cadrul unei tranzacții.
+Tranzacțiile sunt necesare atunci când scriem în baza de date sau accesăm câmpurile care reprezintă relații unul la mai mulți sau mai mulți la mai mulți.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Sumarizând cele de mai sus, clasa care este mapată la un tabel trebuie adnotată cu <code>javax.persistence.Entity</code>. Astfel de clase le numim entitați.
+Un biect de tipul acestei clase va fi mapat la o înregistrare din tabel.
+În mod implicit, numele tabelului corespunde numelui clasei, în caz de excepție putem folosi <code>@Table(name = &lt;nume tabel&gt;)</code> pentru a specifica numele tabelului explicit.
+La fel și pentru câmpurile claselor, numele acestora corespund coloanelor, în caz că vrem explicit, <code>@Column(name = &lt;nume coloana&gt;)</code>.
+Definiția mai formală a unei entități ar fi: <strong>orice clasa adnotată cu @Entity care are o cheie primară (câmp adnotat cu <code>@Id</code>) și un constructor implicit fără paramteri (en. <em>non-arg constructor</em>)</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Depozitele sunt obiecte centrale în accesul la baza de date, pentru mai mult amănunte privinte depozitele, vezi
+<a href="https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.sql.jpa-and-spring-data.repositories">Spring Data JPA Repositories</a>.</p>
+</div>
+<div class="paragraph">
+<p>Exerciții:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>[HARD] Modifică comenzile SQL din fișierele dosarului <code>db/h2/</code> astfel încât să nu pieredem nile înregistrări la fiecare pornire a aplicației (vezi <code>CREATE TABLE IF NOT EXISTS</code>).</p>
+</li>
+<li>
+<p>În secțiunea <a href="https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto.data-initialization.using-basic-sql-scripts">9.3. Initialize a Database Using Basic SQL Scripts</a>
+din <a href="https://docs.spring.io/spring-boot/docs/current/reference/html/index.html">Spring Boot Reference Documentation</a> sunt descrise alterntive de amplasare ale fișierelor SQL
+pentru intițializarea bazei de date.
+Înlocuiește utilizarea proprietăților <code>spring.datasource.schema</code> și <code>spring.datasource.data</code> din <strong>spring-petclinic</strong> cu una din aceste alternative pentru a inițializa baza de date.</p>
+</li>
+<li>
+<p>Configurează <strong>pet-clinic</strong> astfel încât structura bazei de date să fie inițializată nu din fișiere SQL ci din clasele entităților (vezi
+<a href="https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto.data-initialization.using-jpa">9.1. Initialize a Database Using JPA</a> și
+<a href="https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto.data-initialization.using-hibernate">9.2. Initialize a Database Using Hibernate</a>).</p>
+</li>
+<li>
+<p>[HARD] Adaugă configurare în <strong>pet-clinic</strong> pentru a putea stoca datele în SQLite.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="truecurs-6-spring-data"><a class="anchor" href="#truecurs-6-spring-data"></a>Curs 6: Spring Data</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Vom considera proiectul <a href="https://spring.io/guides/gs/accessing-data-jpa/">Accessing Data with JPA</a>.
+Așa cum spus la lecția precedentă, depozitele sunt obiecte centrale în accesul la baza de date.
+Pentru a putea gestiona datele din tabelul la care e mapată o entitate avem nevoie de un depozit pentru acea entitate.
+Varianta minimală a unui depozit lucrativ este o interfață care extinde interfața <code>Repository</code> (din <code>org.springframework.data.repository</code>) sau una dintre derivatele acesteia: <code>CrudRepository</code> și <code>PagingAndSortingRepository</code>.
+Această interfață nu trebuie adnotată, ea va fi detectată de către Spring IoC container și ințializată ca bean.
+Cel mai important e să ne familiarizăm cu regulile de a scrie denumirele metodelor din depozit, astfel încât Spring să poată genera interogările corespunzătoare.
+Iar aceste reguli presupun combinarea de:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#appendix.query.method.subject">cuvinte cheie pentru interogare</a> (en. <em>query subject keywords</em>)</p>
+</li>
+<li>
+<p><a href="https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#appendix.query.method.predicate">cuvinte cheie pentru predicate</a> (en. <em>query predicate keywords</em>)</p>
+</li>
+<li>
+<p><a href="https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#appendix.query.method.predicate">cuvinte cheie pentru modificatori de predicate</a> (en. <em>query predicate modifier keywords</em>)</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Mia mult amănunte privind capbilitățile oferite de depozite:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Stocare, <a href="https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.entity-persistence"><code>CrudRepository.save()</code></a></p>
+</li>
+<li>
+<p><a href="https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.sample-app.finders.strategies">Modelarea interogărilor prin numele metodei</a>.</p>
+</li>
+<li>
+<p>Interogări speciale folosind adnotarea <a href="https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.at-query"><code>@Query</code></a></p>
+</li>
+<li>
+<p><a href="https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.at-query.native">Interogări native</a></p>
+</li>
+<li>
+<p><a href="https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods.sorting">Specificarea sortării prin numele metodei</a></p>
+</li>
+<li>
+<p><a href="https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.modifying-queries">Interogări de modificare și ștergere</a></p>
+</li>
+<li>
+<p>Adnotarea <a href="https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-hints"><code>@QueryHint</code></a></p>
+</li>
+<li>
+<p><a href="https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.entity-graph">Grafuri de entitați</a></p>
+</li>
+<li>
+<p><a href="https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#projections">Proiecții</a></p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="truecurs-7-teste"><a class="anchor" href="#truecurs-7-teste"></a>Curs 7: Teste</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Teste unitare. Biblioteca Mockito.</p>
+</div>
+<div class="paragraph">
+<p>Vom considera proiectul <a href="https://spring.io/guides/gs/testing-web/">Testing the Web Layer</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="truecurs-8-bean-uri"><a class="anchor" href="#truecurs-8-bean-uri"></a>Curs 8: Bean-uri</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>În mod implicit containerul creeaza și configurează toate bean-urile singleton.
+În așa fel dacă sunt eori vom ști de ele la intializare. Îm unele cazuri însă această abordare nu este recomandată.
+În așa caz am putea să ne folosim de <code>lazy-init</code>.</p>
+</div>
+<div class="paragraph">
+<p>Un exemplu cu Lazy-initialized.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-factory-lazy-init" class="bare">https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-factory-lazy-init</a></p>
+</div>
+<div class="paragraph">
+<p>În situații când un singleton are dependințe prototype modalitatea obișnuită de definiție nu e potrivită.
+Deorece beanu-rile ptototype vor fi create și injectate în singleton la initializarea singleton-unul, noi însă am dori să fie create la fiecare accesare.
+Solutția naivă ar fi să injectăm contextul aplicației în singleton și să apelăm <code>getBean</code> de fiecare data (<a href="https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-factory-method-injection" class="bare">https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-factory-method-injection</a>).
+Nu e recomandat. Avem cuplare strânsă în așa caz (un adaos la responsbilități).
+În așa caz ne vine în ajutor injecția de metodă (en. <em>method injection</em>). Injecția de metodă indică Spring-ului că o anumită metodă din singleton care citește prototype este legată de bean-ul prototype.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Component
+@Scope("prototype")
+public class PrototypeBean {
+  // ...
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Service
+public class SomeServices {
+
+    @Lookup
+    public PrototypeBean getPrototypeBean() {
+        return null;
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Exemplul de mai sus arată că putem modifica corpul unei metode. Așa e, Spring poate să injecteze nu doar dependințele, dar și metodele.
+Injectare de metode: <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-factory-method-injection" class="bare">https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-factory-method-injection</a></p>
+</div>
+<div class="paragraph">
+<p>Care cilcul de viață a unui bean? Putem accesa unele evenimente din ciculul e viață a unui bean:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>@PostConstruct, @PreDestroy.</p>
+</li>
+<li>
+<p><code>InitializingBean</code> și <code>void afterPropertiesSet() throws Exception;</code></p>
+</li>
+<li>
+<p><code>DisposableBean</code> și <code>void destroy() throws Exception;</code></p>
+</li>
+<li>
+<p>sau simplu prin utilizarea unor metode cu anumite nume, fără a inmplementa interfețe speciale: <code>init()</code>, <code>initialize()</code>, <code>dispose()</code></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>În plus avem posibilitatea să detectăm când se pornește și respectiv se oprește containerul: <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-factory-lifecycle-processor" class="bare">https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-factory-lifecycle-processor</a>.</p>
+</div>
+<div class="paragraph">
+<p>Alte interfețe de tip <code>Aware</code>: <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#aware-list" class="bare">https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#aware-list</a>.</p>
+</div>
+<div class="paragraph">
+<p>Implementare de factory bean: <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-factory-extension-factorybean" class="bare">https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-factory-extension-factorybean</a>.</p>
+</div>
+<div class="paragraph">
+<p>Profile ale bean-urilor: <code>@Profile</code>, <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-definition-profiles" class="bare">https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-definition-profiles</a>.</p>
+</div>
+<div class="paragraph">
+<p><code>depends-on</code>
+<a href="https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-factory-dependson" class="bare">https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-factory-dependson</a></p>
+</div>
+<div class="paragraph">
+<p>După disucția despre bean ciclu de viață vom discuta și despre evenimente în aplicație
+<a href="https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#context-functionality-events" class="bare">https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#context-functionality-events</a></p>
+</div>
+<div class="paragraph">
+<p>Posibil de discutat despre proxy?
+<a href="https://ntsim.uk/posts/a-closer-look-at-spring-proxies" class="bare">https://ntsim.uk/posts/a-closer-look-at-spring-proxies</a>
+<a href="https://stackoverflow.com/questions/61964811/is-a-proxy-created-for-each-bean-in-spring" class="bare">https://stackoverflow.com/questions/61964811/is-a-proxy-created-for-each-bean-in-spring</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="truecurs-9-spring-mvc"><a class="anchor" href="#truecurs-9-spring-mvc"></a>Curs 9: Spring MVC</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Mai multe detalii despre servlet.</p>
+</div>
+<div class="paragraph">
+<p>Vom considera din nou proiectul <a href="https://github.com/spring-projects/spring-mvc-showcase">Spring MVC Showcase</a>, în particular exemplele din pachetul <code>org.springframework.samples.mvc.async</code>.</p>
+</div>
+<div class="paragraph">
+<p>Pentru clasele din <code>org.springframework.samples.mvc.async</code> sunt remarcabile următoarele fragmente de cod:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Fragment de cod</th>
+<th class="tableblock halign-left valign-top">Descriere</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Callable&lt;T&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>new Callable&lt;T&gt;() { /* &#8230;&#8203; */ }</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Crearea de clasă anonimă care implemntează <code>Callable</code>. Întrucât <code>Callable</code> este interfață nu e posibil de creat un obiect de tip <code>Callable</code> în mod explicit.
+Trebuie de creat o clasă care implementează <code>Callable</code>, iar apoi un exemplar al acestei clase. Clasele anonime este o soluție rapidă pentru astfel de cazuri.
+Pentru mai multe amănunte privind clasele anonime, vezi <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/anonymousclasses.html">Anonymous Classes</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Thread.sleep(2000)</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>() &#8594; { /* &#8230;&#8203; */ }</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lamda expresie. Alternativa pentru clasele anonime începând cu JDK 1.8.
+Pentru mai multe amănunte privitor la lamda expresii, vezi <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html">Lambda Expressions</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>WebAsyncTask&lt;T&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@ExceptionHandler</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>CallableProcessingInterceptorAdapter</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">configurat în <code>org.springframework.samples.mvc.config.WebMvcConfig.configureAsyncSupport(AsyncSupportConfigurer)</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DeferredResult&lt;T&gt;</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DeferredResult&lt;T&gt; &lt;metoda controler&gt;()</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>new DeferredResult&lt;&gt;(&lt;limita de timp&gt;, &lt;valaore implicita in caz de expirare a timpului&gt;)</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@Scheduled(fixedRate = &lt;perioada de timp intre apeluri&gt;)</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DeferredResult.setResult(&lt;rezultat&gt;);</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DeferredResult.setErrorResult(new IllegalStateException("&lt;mesaj de eroare&gt;"));</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>NOTĂ: pentru <code>DeferredResult</code> este foarte informativ să vedem în tab-ul Netweok de la navigator ce se întâmplă ca atare.</p>
+</div>
+<div class="paragraph">
+<p>În caz că este timp am putea discuta puțin despre lamda expresii și fluxuri.</p>
+</div>
+<div class="paragraph">
+<p>VOm considera proiectul <a href="https://spring.io/guides/gs/async-method/">Creating Asynchronous Methods</a>.</p>
+</div>
+<div class="paragraph">
+<p>Exerciții:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>[HARD] Simulare de sarcină care durează mult pe server cu afișarea progesului în navigator.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="truecurs-10-spring-mvc"><a class="anchor" href="#truecurs-10-spring-mvc"></a>Curs 10: Spring MVC</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Vom considera proiectul <a href="https://spring.io/guides/gs/messaging-stomp-websocket/">Using WebSocket to build an interactive web application</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="truecurs-11-spring-mvc"><a class="anchor" href="#truecurs-11-spring-mvc"></a>Curs 11: Spring MVC</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Vom considera din nou proiectul <a href="https://github.com/spring-projects/spring-mvc-showcase">Spring MVC Showcase</a>, în particular exemplele din pachetul <code>org.springframework.samples.mvc.convert</code>.</p>
+</div>
+<div class="paragraph">
+<p>Am putea crea un custom <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/integration.html#rest-message-conversion" class="bare">https://docs.spring.io/spring-framework/docs/current/reference/html/integration.html#rest-message-conversion</a>, de exemplu pentru CSV.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="truecurs-12-spring-data"><a class="anchor" href="#truecurs-12-spring-data"></a>Curs 12: Spring Data</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Vom considera proiectul <a href="https://spring.io/guides/gs/managing-transactions/">Managing Transactions</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="truecurs-13-spring-security"><a class="anchor" href="#truecurs-13-spring-security"></a>Curs 13: Spring Security</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Vom considera din nou proiectul <a href="https://github.com/spring-projects/spring-security-samples">Spring Security Sample</a>, în particular
+<strong>main/servlet/spring-boot/java/hello-security</strong>.</p>
+</div>
+<div class="paragraph">
+<p>La fel <a href="https://spring.io/guides/gs/securing-web/">Securing a Web Application</a>.</p>
+</div>
+<div class="paragraph">
+<p>Vom considera tutorialul <a href="https://spring.io/guides/topicals/spring-security-architecture/">Spring Security Architecture</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="truecurs-14-rest"><a class="anchor" href="#truecurs-14-rest"></a>Curs 14: REST</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Apeluri REST folosind <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-client" class="bare">https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-client</a>.</p>
+</div>
+<div class="paragraph">
+<p>Detalii la serializarea în JSON (serializare de subarbore, format data).</p>
+</div>
+<div class="paragraph">
+<p>Vom considera proiectul <a href="https://spring.io/guides/tutorials/metrics-and-tracing/">Metrics and Tracing with Spring</a>.</p>
+</div>
+<div class="paragraph">
+<p>Vom considera proiectul <a href="https://spring.io/guides/gs/testing-restdocs/">Creating API Documentation with Restdocs</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="truecurs-15-scheduling-caching"><a class="anchor" href="#truecurs-15-scheduling-caching"></a>Curs 15: Scheduling, Caching</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Clasa <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/integration.html#scheduling"><code>TaskExecutor</code></a>.</p>
+</div>
+<div class="paragraph">
+<p>Vom considera proiectul <a href="https://spring.io/guides/gs/scheduling-tasks/">Scheduling Tasks</a>.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.spring.io/spring-framework/docs/current/reference/html/integration.html#cache" class="bare">https://docs.spring.io/spring-framework/docs/current/reference/html/integration.html#cache</a></p>
+</div>
+<div class="paragraph">
+<p>Vom considera proiectul <a href="https://spring.io/guides/gs/caching/">Caching Data with Spring</a>.</p>
 </div>
 </div>
 </div>
@@ -1576,7 +2597,7 @@ sunt folosite pentru a umple un șablon HTML, iar altă metodă întoarce aceea�
 <div id="footer">
 <div id="footer-text">
 Version 1.0<br>
-Last updated 2021-09-16 20:18:46 +0300
+Last updated 2021-09-23 20:26:02 +0300
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
