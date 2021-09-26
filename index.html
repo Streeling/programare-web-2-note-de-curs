@@ -2292,16 +2292,132 @@ Iar aceste reguli presupun combinarea de:</p>
 </li>
 </ol>
 </div>
+<div class="paragraph">
+<p>Exercițiu rezolvat: Fie tabelul <strong>Customers</strong> (<a href="https://www.w3schools.com/sql/sql_syntax.asp" class="bare">https://www.w3schools.com/sql/sql_syntax.asp</a>).
+Definiți clasa care va fi mapătă la acest tabel și metodele depozitului pentru următoarele interogări SQL:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 66.6666%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">SQL</th>
+<th class="tableblock halign-left valign-top">Metodă din depozit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SELECT * FROM Customers;</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SELECT DISTINCT Country FROM Customers;</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SELECT * FROM Customers WHERE Country='Mexico';</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SELECT COUNT(DISTINCT Country) FROM Customers;</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Rezolvare:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Entity
+@Table(name = "Customers")
+public class Customer {
+
+  @Id
+  @Column("CustomerID")
+  private int id;
+
+  @Id
+  @Column("CustomerName")
+  private String name;
+
+  @Id
+  @Column("ContactName")
+  private String contact;
+
+  @Id
+  @Column("Address")
+  private String address;
+
+  @Id
+  @Column("City")
+  private String city;
+
+  @Id
+  @Column("PostalCode")
+  private String postalCode;
+
+  @Id
+  @Column("Country")
+  private String country;
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 66.6666%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">SQL</th>
+<th class="tableblock halign-left valign-top">Metodă din depozit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SELECT * FROM Customers;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>List&lt;Customer&gt; findAll()</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SELECT * FROM Customers WHERE Country='Mexico';</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>List&lt;Customer&gt; findByCountry(@Param ("country") String country)</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SELECT DISTINCT Country FROM Customers;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>List&lt;String&gt; findDistinctCountry()</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SELECT COUNT(DISTINCT Country) FROM Customers;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>int countDistinctCountry()</code></p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="sect1">
 <h2 id="truecurs-7-teste"><a class="anchor" href="#truecurs-7-teste"></a>Curs 7: Teste</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Teste unitare. Biblioteca Mockito.</p>
+<p>Vom considera proiectul <a href="https://spring.io/guides/gs/testing-web/">Testing the Web Layer</a>. Apoi testele din spring-mvc-showcase, spring-petclinit și în final spring-data-examples.</p>
 </div>
 <div class="paragraph">
-<p>Vom considera proiectul <a href="https://spring.io/guides/gs/testing-web/">Testing the Web Layer</a>.</p>
+<p>Vom construi un test pentru exercițiul rezolvat din cursul anterior.</p>
+</div>
+<div class="paragraph">
+<p>Vom converti între Maven și Gradle <a href="https://spring.io/guides/gs/testing-web/" class="bare">https://spring.io/guides/gs/testing-web/</a> ținând cont de:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://www.jetbrains.com/help/idea/convert-a-regular-project-into-a-maven-project.html" class="bare">https://www.jetbrains.com/help/idea/convert-a-regular-project-into-a-maven-project.html</a></p>
+</li>
+<li>
+<p><a href="https://intellij-support.jetbrains.com/hc/en-us/community/posts/206808015-How-do-I-add-Gradle-to-an-existing-project-" class="bare">https://intellij-support.jetbrains.com/hc/en-us/community/posts/206808015-How-do-I-add-Gradle-to-an-existing-project-</a></p>
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -2597,7 +2713,7 @@ Pentru mai multe amănunte privitor la lamda expresii, vezi <a href="https://doc
 <div id="footer">
 <div id="footer-text">
 Version 1.0<br>
-Last updated 2021-09-23 20:26:02 +0300
+Last updated 2021-09-26 19:16:37 +0300
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
