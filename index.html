@@ -1204,103 +1204,6 @@ private String fooBar;</code></pre>
 <p>Injectarea dicționarelor (en. <em>map</em>), comasare dicționarelor.</p>
 </div>
 <div class="paragraph">
-<p>Întrebare: câte obiecte a creat IoC container în baza clasei controller? Eu presupun că doar unul. În caz că am dreptate - de ce doar unul?
-Ați auzit de Singletone? Putem controla acest proces?</p>
-</div>
-<div class="paragraph">
-<p>În Spring putem controla durata de viață a bean-urilor (en. <em>bean scope</em>). Spring framework menține șase tipuri (pentru mai multe amănunte, vezi
-<a href="https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-factory-scopes">Bean Scopes</a>):</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>singleton, (implicit) doar un bean pentru fiecare definiție de bean pentru fiecare IoC container</p>
-</li>
-<li>
-<p>prototype, un bean nou la fiecare necesitate pentru fiecare definiție de bean</p>
-</li>
-<li>
-<p>request, un bean nou la fiecare cerere client pentru fiecare definiție de bean (un fel de singleton în raport cu o cerere client)</p>
-</li>
-<li>
-<p>session, un bean nou la fiecare sesiune</p>
-</li>
-<li>
-<p>application, un singur bean pe toată durata de viață a apliației, indiferent de numărul de IoC cotainere</p>
-</li>
-<li>
-<p>websocket, un bean nou la fiecare websocket</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Vom exemplifica aceste tipuri prin:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Scope("singleton") // care e default
-@Service
-public class CounterService {
-
-  private long counter;
-
-  public long count() {
-    return ++counter;
-  }
-}</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@RestController
-public class CounterController() {
-
-  // ...
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Să încercăm cu request pe controller:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Scope("request")
-@RestController
-public class CounterController() {
-
-  // ...
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Să încercăm cu prototype:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Scope("prototype")
-@Service
-public class CounterService {
-  // ...
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Utilizăm ptototype pentru bean-urile care trebuie să aibă stare.</p>
-</div>
-<div class="paragraph">
-<p>Sinonime:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><code>@Scope("singleton")</code> = <code>@Singleton</code></p>
-</li>
-<li>
-<p><code>@Scope("request")</code> = <code>@RequestScope</code></p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
 <p>Exerciții:</p>
 </div>
 <div class="olist arabic">
@@ -2313,15 +2216,15 @@ Definiți clasa care va fi mapătă la acest tabel și metodele depozitului pent
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SELECT DISTINCT Country FROM Customers;</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>SELECT * FROM Customers WHERE Country='Mexico';</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SELECT COUNT(DISTINCT Country) FROM Customers;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SELECT COUNT(*) FROM Customers WHERE Country='Mexico';</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SELECT DISTINCT Country FROM Customers;</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -2339,27 +2242,21 @@ public class Customer {
   @Column("CustomerID")
   private int id;
 
-  @Id
   @Column("CustomerName")
   private String name;
 
-  @Id
   @Column("ContactName")
   private String contact;
 
-  @Id
   @Column("Address")
   private String address;
 
-  @Id
   @Column("City")
   private String city;
 
-  @Id
   @Column("PostalCode")
   private String postalCode;
 
-  @Id
   @Column("Country")
   private String country;
 }</code></pre>
@@ -2386,15 +2283,41 @@ public class Customer {
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>List&lt;Customer&gt; findByCountry(@Param ("country") String country)</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SELECT DISTINCT Country FROM Customers;</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>List&lt;String&gt; findDistinctCountry()</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SELECT COUNT(*) FROM Customers WHERE Country='Mexico';</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>int countDistinctByCountry(@Param ("country") String country)</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SELECT COUNT(DISTINCT Country) FROM Customers;</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>int countDistinctCountry()</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SELECT DISTINCT Country FROM Customers;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>@Query("select distinct c.lastName from Customer c") List&lt;String&gt; findDistinctCountry()</code></p></td>
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>Exerciții:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Aceeași sarcină ca și la exemplul de exercițiu rezolvat cu excepția tabelului și interogările:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>tabelul <code>Customers</code> și interogările dinsecțiunile sufixate cu <em>Example</em> (<a href="https://www.w3schools.com/sql/sql_top.asp" class="bare">https://www.w3schools.com/sql/sql_top.asp</a>)</p>
+</li>
+<li>
+<p>tabelul <em>Fruits</em> și interogările (<a href="https://www.sqlshack.com/sql-examples-for-beginners-sql-select-statement-usage/" class="bare">https://www.sqlshack.com/sql-examples-for-beginners-sql-select-statement-usage/</a>)</p>
+</li>
+<li>
+<p>tabelul <code>Person</code> și interogările (<a href="https://www.mssqltips.com/sqlservertip/6818/sql-select-examples/" class="bare">https://www.mssqltips.com/sqlservertip/6818/sql-select-examples/</a>)</p>
+</li>
+<li>
+<p>[HARD] tabelele <code>STATION</code>, <code>STATS</code> și interogările (<a href="https://www.itl.nist.gov/div897/ctg/dm/sql_examples.htm" class="bare">https://www.itl.nist.gov/div897/ctg/dm/sql_examples.htm</a>)</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -2419,11 +2342,118 @@ public class Customer {
 </li>
 </ol>
 </div>
+<div class="paragraph">
+<p>Exerciții:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Pentru exercițiile de la cursul precedent scrieți o clasă cu teste.</p>
+</li>
+</ol>
+</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="truecurs-8-bean-uri"><a class="anchor" href="#truecurs-8-bean-uri"></a>Curs 8: Bean-uri</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Întrebare: câte obiecte a creat IoC container în baza clasei controller? Eu presupun că doar unul. În caz că am dreptate - de ce doar unul?
+Ați auzit de Singletone? Putem controla acest proces?</p>
+</div>
+<div class="paragraph">
+<p>În Spring putem controla durata de viață a bean-urilor (en. <em>bean scope</em>). Spring framework menține șase tipuri (pentru mai multe amănunte, vezi
+<a href="https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-factory-scopes">Bean Scopes</a>):</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>singleton, (implicit) doar un bean pentru fiecare definiție de bean pentru fiecare IoC container</p>
+</li>
+<li>
+<p>prototype, un bean nou la fiecare necesitate pentru fiecare definiție de bean</p>
+</li>
+<li>
+<p>request, un bean nou la fiecare cerere client pentru fiecare definiție de bean (un fel de singleton în raport cu o cerere client)</p>
+</li>
+<li>
+<p>session, un bean nou la fiecare sesiune</p>
+</li>
+<li>
+<p>application, un singur bean pe toată durata de viață a apliației, indiferent de numărul de IoC cotainere</p>
+</li>
+<li>
+<p>websocket, un bean nou la fiecare websocket</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Vom exemplifica aceste tipuri prin:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Scope("singleton") // care e default
+@Service
+public class CounterService {
+
+  private long counter;
+
+  public long count() {
+    return ++counter;
+  }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@RestController
+public class CounterController() {
+
+  // ...
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Să încercăm cu request pe controller:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Scope("request")
+@RestController
+public class CounterController() {
+
+  // ...
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Să încercăm cu prototype:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Scope("prototype")
+@Service
+public class CounterService {
+  // ...
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Utilizăm ptototype pentru bean-urile care trebuie să aibă stare.</p>
+</div>
+<div class="paragraph">
+<p>Sinonime:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>@Scope("singleton")</code> = <code>@Singleton</code></p>
+</li>
+<li>
+<p><code>@Scope("request")</code> = <code>@RequestScope</code></p>
+</li>
+</ol>
+</div>
 <div class="paragraph">
 <p>În mod implicit containerul creeaza și configurează toate bean-urile singleton.
 În așa fel dacă sunt eori vom ști de ele la intializare. Îm unele cazuri însă această abordare nu este recomandată.
@@ -2713,7 +2743,7 @@ Pentru mai multe amănunte privitor la lamda expresii, vezi <a href="https://doc
 <div id="footer">
 <div id="footer-text">
 Version 1.0<br>
-Last updated 2021-09-26 19:16:37 +0300
+Last updated 2021-09-30 21:10:52 +0300
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
